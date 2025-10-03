@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sim.AI Use Cases & Workflow Examples</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 5px solid #764ba2;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-top: 25px;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .use-case-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        .use-case-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .difficulty.beginner {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .difficulty.intermediate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .difficulty.advanced {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .workflow-steps {
+            background: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .workflow-steps ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        .workflow-steps li {
+            margin: 10px 0;
+        }
+        .blocks-needed {
+            background: #e0e7ff;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .blocks-needed h4 {
+            margin-top: 0;
+            color: #4338ca;
+        }
+        .block-tag {
+            display: inline-block;
+            background: white;
+            border: 1px solid #6366f1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            font-size: 0.9em;
+            color: #4338ca;
+        }
+        .example-prompt {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #22c55e;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .tip-box {
+            background: #dbeafe;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .nav-links {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .nav-links a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        code {
+            background: #1e293b;
+            color: #22c55e;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Sim.AI Use Cases & Workflow Examples</h1>
+            <p style="font-size: 1.2em; margin: 10px 0;">Practical workflows you can build with your local Sim.AI installation</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Back to Installation Guide</a>
+            <a href="https://docs.sim.ai" target="_blank">Official Documentation</a>
+        </div>
+
+        <h2>Quick Start Use Cases</h2>
+        <p>These examples are designed to help you understand Sim.AI's capabilities and get hands-on experience. Each includes the blocks needed, workflow steps, and example prompts.</p>
+
+        <div class="use-case-grid">
+            <!-- Use Case 1 -->
+            <div class="use-case-card">
+                <div class="use-case-icon">📝</div>
+                <span class="difficulty beginner">Beginner</span>
+                <h3>1. Simple Research Assistant</h3>
+                <p><strong>Purpose:</strong> Create an AI agent that researches topics and provides structured summaries.</p>
+                
+                <div class="blocks-needed">
+                    <h4>Blocks Needed:</h4>
+                    <span class="block-tag">Agent</span>
+                    <span class="block-tag">Response</span>
+                </div>
+
+                <div class="workflow-steps">
+                    <strong>Workflow Steps:</strong>
+                    <ol>
+                        <li>Add Agent block</li>
+                        <li>Select model: gemma2:2b or llama3.2:3b</li>
+                        <li>Configure system prompt (see below)</li>
+                        <li>Add Response block</li>
+                        <li>Test in Chat panel</li>
+                    </ol>
+                </div>
+
+                <div class="example-prompt">System Prompt:
+You are a research assistant. When given a topic, provide:
+1. Brief overview (2-3 sentences)
+2. Key points (3-5 bullet points)
+3. Potential applications
+4. Related topics to explore
+
+Keep responses concise and well-structured.</div>
+
+                <div class="tip-box">
+                    <strong>Try asking:</strong> "Research quantum computing for business applications"
+                </div>
+            </div>
+
+            <!-- Use Case 2 -->
+            <div class="use-case-card">
+                <div class="use-case-icon">✉️</div>
+                <span class="difficulty beginner">Beginner</span>
+                <h3>2. Email Response Generator</h3>
+                <p><strong>Purpose:</strong> Draft professional email responses based on incoming message context.</p>
+                
+                <div class="blocks-needed">
+                    <h4>Blocks Needed:</h4>
+                    <span class="block-tag">Agent</span>
+                    <span class="block-tag">Response</span>
+                </div>
+
+                <div class="workflow-steps">
+                    <strong>Workflow Steps:</strong>
+                    <ol>
+                        <li>Create new workflow</li>
+                        <li>Add Agent block</li>
+                        <li>Set system prompt for email tone</li>
+                        <li>Test with sample emails</li>
+                    </ol>
+                </div>
+
+                <div class="example-prompt">System Prompt:
+You are a professional email assistant. Given an incoming email, draft a clear, professional response that:
+- Acknowledges the sender's message
+- Addresses their questions or concerns
+- Maintains appropriate business tone
+- Keeps it concise (under 200 words)
+- Ends with appropriate closing
+
+Format the response ready to send.</div>
+
+                <div class="tip-box">
+                    <strong>Input example:</strong> Paste an email asking about meeting availability, and get a draft response.
+                </div>
+            </div>
+
+            <!-- Use Case 3 -->
+            <div class="use-case-card">
+                <div class="use-case-icon">📊</div>
+                <span class="difficulty intermediate">Intermediate</span>
+                <h3>3. Data Analyzer with Structured Output</h3>
+                <p><strong>Purpose:</strong> Analyze data and return results in consistent JSON format.</p>
+                
+                <div class="blocks-needed">
+                    <h4>Blocks Needed:</h4>
+                    <span class="block-tag">Agent</span>
+                    <span class="block-tag">Response</span>
+                </div>
+
+                <div class="workflow-steps">
+                    <strong>Workflow Steps:</strong>
+                    <ol>
+                        <li>Add Agent block</li>
+                        <li>Configure system prompt</li>
+                        <li>Click "Add Response Format"</li>
+                        <li>Use AI to generate schema: "create schema with fields: summary, key_findings, recommendations, confidence_score"</li>
+                        <li>Test with sample data</li>
+                    </ol>
+                </div>
+
+                <div class="example-prompt">System Prompt:
+You are a data analysis assistant. Analyze the provided information and extract:
+- Summary: Brief overview
+- Key findings: Important insights (list)
+- Recommendations: Actionable suggestions
+- Confidence score: 1-10 rating of data quality
+
+Be objective and data-driven.</div>
+
+                <div class="tip-box">
+                    <strong>Try with:</strong> Paste sales data, survey results, or meeting notes to get structured analysis.
+                </div>
+            </div>
+
+            <!-- Use Case 4 -->
+            <div class="use-case-card">
+                <div class="use-case-icon">🔄</div>
+                <span class="difficulty intermediate">Intermediate</span>
+                <h3>4. Content Repurposer</h3>
+                <p><strong>Purpose:</strong> Transform content between formats (blog to social, long to short, etc.).</p>
+                
+                <div class="blocks-needed">
+                    <h4>Blocks Needed:</h4>
+                    <span class="block-tag">Agent</span>
+                    <span class="block-tag">Router</span>
+                    <span class="block-tag">Response</span>
+                </div>
+
+                <div class="workflow-steps">
+                    <strong>Workflow Steps:</strong>
+                    <ol>
+                        <li>Add Agent block for content analysis</li>
+                        <li>Add Router block to determine format</li>
+                        <li>Add multiple Agent blocks for each format</li>
+                        <li>Connect outputs to Response</li>
+                    </ol>
+                </div>
+
+                <div class="example-prompt">System Prompt:
+You are a content repurposing specialist. Transform the provided content into the requested format:
+- Twitter thread: 5-7 tweets with hooks
+- LinkedIn post: Professional, 150-200 words
+- Email newsletter: Engaging, action-oriented
+- Blog summary: 3 paragraph overview
+
+Maintain key messages while adapting tone and length.</div>
+
+                <div class="tip-box">
+                    <strong>Use for:</strong> Turn blog posts into social media content automatically.
+                </div>
+            </div>
+
+            <!-- Use Case 5 -->
+            <div class="use-case-card">
+                <div class="use-case-icon">🎯</div>
+                <span class="difficulty intermediate">Intermediate</span>
+                <h3>5. Meeting Notes Processor</h3>
+                <p><strong>Purpose:</strong> Convert raw meeting transcripts into action items and summaries.</p>
+                
+                <div class="blocks-needed">
+                    <h4>Blocks Needed:</h4>
+                    <span class="block-tag">Agent</span>
+                    <span class="block-tag">Response</span>
+                </div>
+
+                <div class="workflow-steps">
+                    <strong>Workflow Steps:</strong>
+                    <ol>
+                        <li>Create Agent with specialized prompt</li>
+                        <li>Add structured output schema</li>
+                        <li>Schema fields: decisions, action_items, next_steps, attendees</li>
+                        <li>Test with meeting transcript</li>
+                    </ol>
+                </div>
+
+                <div class="example-prompt">System Prompt:
+Extract structured information from meeting notes:
+
+DECISIONS: Key decisions made
+ACTION ITEMS: Who needs to do what by when
+NEXT STEPS: Follow-up actions required
+KEY DISCUSSIONS: Main topics covered
+ATTENDEES: Who was present
+
+Format clearly with owners and deadlines where mentioned.</div>
+
+                <div class="tip-box">
+                    <strong>Saves time:</strong> Turn 30-minute meeting recordings into 2-minute summaries.
+                </div>
+            </div>
+
+            <!-- Use Case 6 -->
+            <div class="use-case-card">
+                <div class="use-case-icon">🤖</div>
+                <span class="difficulty advanced">Advanced</span>
+                <h3>6. Multi-Agent Research System</h3>
+                <p><strong>Purpose:</strong> Multiple specialized agents collaborate on complex research tasks.</p>
+                
+                <div class="blocks-needed">
+                    <h4>Blocks Needed:</h4>
+                    <span class="block-tag">Agent</span> (x3)
+                    <span class="block-tag">Router</span>
+                    <span class="block-tag">Condition</span>
+                    <span class="block-tag">Response</span>
+                </div>
+
+                <div class="workflow-steps">
+                    <strong>Workflow Steps:</strong>
+                    <ol>
+                        <li>Agent 1: Initial research & fact-finding</li>
+                        <li>Agent 2: Analysis & critique</li>
+                        <li>Agent 3: Synthesis & recommendations</li>
+                        <li>Router: Directs workflow based on topic</li>
+                        <li>Condition: Quality check before final output</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <strong>Complexity level:</strong> This requires understanding of workflow logic and agent coordination. Start with simpler use cases first.
+                </div>
+            </div>
+        </div>
+
+        <h2>Integration Use Cases</h2>
+        <p>Once comfortable with basic workflows, explore these integration patterns:</p>
+
+        <div class="use-case-grid">
+            <div class="use-case-card">
+                <div class="use-case-icon">📅</div>
+                <h3>Calendar Management Assistant</h3>
+                <p>Parse emails for meeting requests and draft calendar invites with details.</p>
+                <p><strong>Future integration:</strong> Connect to Google Calendar API</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">💾</div>
+                <h3>Document Summarizer</h3>
+                <p>Upload documents, extract key information, store summaries in database.</p>
+                <p><strong>Tools needed:</strong> File upload, database connection</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">📈</div>
+                <h3>Report Generator</h3>
+                <p>Scheduled workflow that pulls data, analyzes trends, sends formatted reports.</p>
+                <p><strong>Features:</strong> Scheduling, API calls, email integration</p>
+            </div>
+        </div>
+
+        <h2>Best Practices</h2>
+        
+        <div class="tip-box">
+            <h3>System Prompt Tips</h3>
+            <ul>
+                <li><strong>Be specific:</strong> Define exact output format and requirements</li>
+                <li><strong>Include examples:</strong> Show the AI what good output looks like</li>
+                <li><strong>Set constraints:</strong> Word limits, tone, structure</li>
+                <li><strong>Define role:</strong> "You are a..." helps set context</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <h3>Workflow Design Tips</h3>
+            <ul>
+                <li><strong>Start simple:</strong> Single agent workflows first</li>
+                <li><strong>Test incrementally:</strong> Add blocks one at a time</li>
+                <li><strong>Use structured output:</strong> JSON schemas for consistent results</li>
+                <li><strong>Name blocks clearly:</strong> Makes debugging easier</li>
+                <li><strong>Document your prompts:</strong> Save working prompts for reuse</li>
+            </ul>
+        </div>
+
+        <h2>Model Selection Guide</h2>
+        
+        <div class="workflow-steps">
+            <strong>gemma2:2b</strong> - Best for:
+            <ul>
+                <li>Simple text generation</li>
+                <li>Quick responses needed</li>
+                <li>High-volume processing</li>
+                <li>Low resource usage required</li>
+            </ul>
+
+            <strong>llama3.2:3b</strong> - Best for:
+            <ul>
+                <li>Balanced performance</li>
+                <li>General purpose workflows</li>
+                <li>Moderate complexity tasks</li>
+                <li>Good quality/speed tradeoff</li>
+            </ul>
+
+            <strong>llama3.1:8b</strong> - Best for:
+            <ul>
+                <li>Complex reasoning</li>
+                <li>Technical content</li>
+                <li>High accuracy requirements</li>
+                <li>Multi-step analysis</li>
+            </ul>
+        </div>
+
+        <h2>Next Steps</h2>
+        <ol>
+            <li><strong>Build your first workflow:</strong> Start with Use Case #1 (Research Assistant)</li>
+            <li><strong>Experiment with prompts:</strong> Try different system prompts to see how outputs change</li>
+            <li><strong>Add structured output:</strong> Use JSON schemas for consistent results</li>
+            <li><strong>Test different models:</strong> Compare gemma2:2b vs llama3.2:3b performance</li>
+            <li><strong>Document your workflows:</strong> Save successful patterns for reuse</li>
+            <li><strong>Share with cohort:</strong> Post your best workflows for others to learn from</li>
+        </ol>
+
+        <div class="nav-links">
+            <a href="index.html">Back to Installation Guide</a>
+            <a href="https://docs.sim.ai/getting-started" target="_blank">Official Tutorial</a>
+            <a href="https://github.com/simstudioai/sim" target="_blank">GitHub Repository</a>
+        </div>
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #e2e8f0;">
+
+        <p style="text-align: center; color: #64748b;">
+            <strong>Created for AIGF Cohort 5</strong><br>
+            Terris Foley - October 2025
+        </p>
+    </div>
+</body>
+</html>
